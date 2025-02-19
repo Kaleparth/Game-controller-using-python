@@ -15,19 +15,37 @@ while True:
 
     if hands:
         finger = detector.fingersUp(hands[0])
-        if finger == [0,0,0,0,0]:
+        print(finger)
+        if finger == [0, 1, 0, 0, 0]:
             keyboard.press(Key.left)
+            keyboard.press(Key.up)
+            keyboard.release(Key.down)
+            keyboard.release(Key.right)
+
+        if finger == [0, 0, 0, 0, 1]:
+            keyboard.press(Key.right)
+            keyboard.press(Key.up)
+            keyboard.release(Key.left)
+            keyboard.release(Key.down)
+
+
+        if finger == [0,0,0,0,0]:
+            keyboard.press(Key.up)
+            keyboard.release(Key.down)
+            keyboard.release(Key.left)
             keyboard.release(Key.right)
 
         elif finger == [1,1,1,1,1]:
-            keyboard.press(Key.right)
+            keyboard.press(Key.down)
+            keyboard.release(Key.up)
             keyboard.release(Key.left)
+            keyboard.release(Key.right)
          
     else:
         keyboard.release(Key.left)
+        keyboard.release(Key.up)
+        keyboard.release(Key.down)
         keyboard.release(Key.right)
         
-
-    cv2.imshow("Problem Solve with Ridoy", img)
     if cv2.waitKey(1) == ord ("q"):
         break
